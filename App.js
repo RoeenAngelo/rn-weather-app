@@ -1,17 +1,15 @@
 import React from "react"
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons';
-import CurrentWeather from "./src/screens/CurrentWeather";
-import UpcomingWeather from "./src/screens/UpcomingWeather";
-import City from "./src/screens/City";
+import { ActivityIndicator, View, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
+import Tabs from "./src/components/Tabs";
+
+
 
 const App = () => {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <CurrentWeather />
-      </View>
+    <Tabs />
+
     </NavigationContainer>
   )
 }
@@ -19,7 +17,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    justifyContent: "center"
   },
 });
 
