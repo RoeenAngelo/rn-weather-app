@@ -1,5 +1,7 @@
 import React from 'react'
 import { SafeAreaView, Text, StyleSheet, ImageBackground, StatusBar, View } from 'react-native'
+import { Feather } from '@expo/vector-icons';
+import IconText from '../components/IconText';
 
 const City = () => {
   const {
@@ -22,7 +24,30 @@ const City = () => {
         source={require('../../assets/city.jpg')}
         style={imageLayout}     
       >
-        <Text>City</Text>
+        <Text style={[cityText, cityName]}>New York</Text>
+        <Text style={[cityText, countryName]}>USA</Text>
+        <View style={[populationWrapper, rowLayout]}>
+          <IconText 
+            iconName={'user'}
+            iconColor={'white'}
+            bodyText={'30,000'}
+            bodyTextStyles={populationText}
+          />
+        </View>
+        <View style={[riseSetWrapper, rowLayout]}>
+          <IconText 
+          iconName={'sunrise'} 
+          iconColor={'white'}
+          bodyText={'10:46:58am'}
+          bodyTextStyles={riseSetText}
+          />
+          <IconText 
+          iconName={'sunset'} 
+          iconColor={'white'}
+          bodyText={'18:26:58pm'}
+          bodyTextStyles={riseSetText}
+          />
+        </View>
       </ImageBackground>
     </SafeAreaView>
   )
@@ -55,7 +80,7 @@ const styles = StyleSheet.create({
   populationText: {
     fontSize: 25,
     marginLeft: 7.5,
-    color: 'red'
+    color: 'white'
   },
   riseSetWrapper: {
     justifyContent: 'space-around',
