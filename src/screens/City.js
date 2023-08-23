@@ -1,9 +1,17 @@
 import React from 'react'
-import { SafeAreaView, Text, StyleSheet, ImageBackground, StatusBar, View } from 'react-native'
-import { Feather } from '@expo/vector-icons';
-import IconText from '../components/IconText';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  StatusBar,
+  View
+} from 'react-native'
+import moment from 'moment'
+import IconText from '../components/IconText'
 
-const City = () => {
+const City = ({ weatherData }) => {
+  const { name, country, population, sunrise, sunset } = weatherData
   const {
     container,
     cityName,
@@ -16,36 +24,34 @@ const City = () => {
     riseSetText,
     rowLayout
   } = styles
-
-
   return (
     <SafeAreaView style={container}>
       <ImageBackground
         source={require('../../assets/city.jpg')}
-        style={imageLayout}     
+        style={imageLayout}
       >
-        <Text style={[cityText, cityName]}>New York</Text>
-        <Text style={[cityText, countryName]}>USA</Text>
+        <Text style={[cityName, cityText]}>{name}</Text>
+        <Text style={[countryName, cityText]}>{country}</Text>
         <View style={[populationWrapper, rowLayout]}>
-          <IconText 
+          <IconText
             iconName={'user'}
-            iconColor={'white'}
-            bodyText={'30,000'}
+            iconColor={'red'}
+            bodyText={`Population: ${population}`}
             bodyTextStyles={populationText}
           />
         </View>
         <View style={[riseSetWrapper, rowLayout]}>
-          <IconText 
-          iconName={'sunrise'} 
-          iconColor={'white'}
-          bodyText={'10:46:58am'}
-          bodyTextStyles={riseSetText}
+          <IconText
+            iconName={'sunrise'}
+            iconColor={'white'}
+            bodyText={moment(sunrise).format('kk:mm')}
+            bodyTextStyles={riseSetText}
           />
-          <IconText 
-          iconName={'sunset'} 
-          iconColor={'white'}
-          bodyText={'18:26:58pm'}
-          bodyTextStyles={riseSetText}
+          <IconText
+            iconName={'sunset'}
+            iconColor={'white'}
+            bodyText={moment(sunset).format('kk:mm')}
+            bodyTextStyles={riseSetText}
           />
         </View>
       </ImageBackground>
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   populationText: {
     fontSize: 25,
     marginLeft: 7.5,
-    color: 'white'
+    color: 'red'
   },
   riseSetWrapper: {
     justifyContent: 'space-around',

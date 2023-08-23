@@ -9,10 +9,11 @@ import { Feather } from '@expo/vector-icons'
 const Tab = createBottomTabNavigator()
 
 const Tabs = ({ weather }) => {
+  console.log(weather)
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor: 'lightblue'
@@ -23,50 +24,53 @@ const Tabs = ({ weather }) => {
         headerTitleStyle: {
           fontWeight: 'bold',
           fontSize: 25,
-          color: 'tomato'
+          color: 'black'
         }
       }}
     >
-      <Tab.Screen 
+      <Tab.Screen
         name={'Current'}
-        component={CurrentWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
               name={'droplet'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? 'blue' : 'black'}
             />
           )
         }}
-      />
-      <Tab.Screen 
+      >
+        {() => <CurrentWeather weatherData={weather.list[0]} />}
+      </Tab.Screen>
+      <Tab.Screen
         name={'Upcoming'}
-        component={UpcomingWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
               name={'clock'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? 'blue' : 'black'}
             />
           )
         }}
-      />
-      <Tab.Screen 
+      >
+        {() => <UpcomingWeather weatherData={weather.list} />}
+      </Tab.Screen>
+      <Tab.Screen
         name={'City'}
-        component={City}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
               name={'home'}
               size={25}
-              color={focused ? 'tomato' : 'black'}
+              color={focused ? 'blue' : 'black'}
             />
           )
         }}
-      />
-  </Tab.Navigator>
+      >
+        {() => <City weatherData={weather.city} />}
+      </Tab.Screen>
+    </Tab.Navigator>
   )
 }
 
