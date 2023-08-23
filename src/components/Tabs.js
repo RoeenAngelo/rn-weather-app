@@ -40,10 +40,11 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
+        {/* Emit to parent component */}
         {() => <CurrentWeather weatherData={weather.list[0]} />}
       </Tab.Screen>
       <Tab.Screen
-        name={'Upcoming'}
+        name={'Forecast'}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -54,6 +55,7 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
+        {/* Emit to parent component */}
         {() => <UpcomingWeather weatherData={weather.list} />}
       </Tab.Screen>
       <Tab.Screen
@@ -68,6 +70,7 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
+        {/* Emit to parent component */}
         {() => <City weatherData={weather.city} />}
       </Tab.Screen>
     </Tab.Navigator>
